@@ -17,6 +17,8 @@ ALLOWED_ITEM_DATA_TYPE = [
     'accessory'
 ]
 
+CLEAN_DATA_FILES = False
+
 
 def write_data(data_src: str, data: []) -> None:
     with open(data_src, 'a+', newline='') as destination_file:
@@ -225,6 +227,12 @@ def print_in_table(data: [], data_type: str) -> None:
 
 
 def clean_up():
+    if not CLEAN_DATA_FILES:
+        print('Skip cleaning the data files.')
+        return
+
+    print('Cleaning the data files.')
+
     with open('../data/customers.csv', 'w') as customers_file:
         writer = csv.writer(customers_file)
         customer = Customer()
