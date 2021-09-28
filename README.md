@@ -1,6 +1,6 @@
 # HHS Project Biker
 
-On this moment we use the `tabulate` module to help us with the printing of the data in good looking tables to the console.
+Currently we use the `tabulate` module to help us with the printing of the data in good looking tables to the console.
 To use this project, Clone it to your desired folder, open the folder with your IDE, open a console/terminal with the project folder as working directory and run:
 
 ```shell
