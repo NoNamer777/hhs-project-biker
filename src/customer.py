@@ -12,7 +12,7 @@ class Customer(Person):
 
         self.first_name = arguments['first_name']
         self.last_name = arguments['last_name']
-        self.gender = Gender(arguments['gender'])
+        self.gender = arguments['gender']
         self.is_regular_customer = arguments['regular_customer']
         self.is_clumsy = arguments['clumsy']
 

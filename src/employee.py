@@ -1,17 +1,17 @@
+from enum import Enum
 from person import Person
-from gender import Gender
 
-EMPLOYEE_ROLES = [
-    'service desk',
-    'repair',
-    'administration',
-    'human resources'
-]
+
+class EmployeeRole(Enum):
+    SERVICE_DESK = 'Service desk'
+    REPAIR = 'Repair'
+    ADMINISTRATION = 'Administration'
+    HUMAN_RESOURCES = 'Human resources'
 
 
 class Employee(Person):
     _hourly_wage: float = None
-    _role: str = None
+    _role: EmployeeRole = None
 
     def __init__(self, arguments: dict = None):
         if arguments is None:
@@ -19,7 +19,7 @@ class Employee(Person):
 
         self.first_name = arguments['first_name']
         self.last_name = arguments['last_name']
-        self.gender = Gender(arguments['gender'])
+        self.gender = arguments['gender']
         self.hourly_wage = arguments['hourly_wage']
         self.role = arguments['role']
 
@@ -40,12 +40,9 @@ class Employee(Person):
         self._hourly_wage = hourly_wage
 
     @property
-    def role(self) -> str:
+    def role(self) -> EmployeeRole:
         return self._role
 
     @role.setter
-    def role(self, role: str) -> None:
-        if role not in EMPLOYEE_ROLES:
-            raise AttributeError(f"'{role}' is not a valid role for employees. {EMPLOYEE_ROLES}")
-
-        self._role = role
+    def role(self, role) -> None:
+        self._role = role if type(role) == EmployeeRole else EmployeeRole[role.split('.')[1]]

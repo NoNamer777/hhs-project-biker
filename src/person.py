@@ -14,7 +14,7 @@ class Person:
         return {
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'gender': None if self.gender is None else self.gender.value,
+            'gender': self.gender,
         }
 
     def name(self):
@@ -25,8 +25,8 @@ class Person:
         return self._gender
 
     @gender.setter
-    def gender(self, gender: Gender):
-        self._gender = gender
+    def gender(self, gender):
+        self._gender = gender if type(gender) == Gender else Gender[gender.split('.')[1]]
 
     @property
     def first_name(self) -> str:
