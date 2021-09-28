@@ -114,32 +114,32 @@ def create_bikes() -> None:
     bike_1 = Bike()
     bike_1.cost = 125.68
     bike_1.damaged = False
-    bike_1.rented = True
     bike_1.build_for_gender = Gender('Man')
+    bike_1.is_rented = True
     bike_1.is_electric = False
     bikes.append(bike_1)
 
     bike_2 = Bike()
     bike_2.cost = 246.38
     bike_2.damaged = False
-    bike_2.rented = False
     bike_2.build_for_gender = Gender('Vrouw')
+    bike_2.is_rented = False
     bike_2.is_electric = True
     bikes.append(bike_2)
 
     bike_3 = Bike()
     bike_3.cost = 268.17
     bike_3.damaged = True
-    bike_3.rented = False
     bike_3.build_for_gender = Gender('Vrouw')
+    bike_3.is_rented = False
     bike_3.is_electric = False
     bikes.append(bike_3)
 
     bike_4 = Bike()
     bike_4.cost = 136.46
     bike_4.damaged = True
-    bike_4.rented = False
     bike_4.build_for_gender = Gender('Man')
+    bike_4.is_rented = False
     bike_4.is_electric = True
     bikes.append(bike_4)
 
@@ -152,33 +152,33 @@ def create_accessories() -> None:
     accessory_1 = Accessory()
     accessory_1.cost = 12.03
     accessory_1.damaged = True
-    accessory_1.rented = False
+    accessory_1.is_rented = False
     accessory_1.name = 'Helm'
-    accessory_1.protective = True
+    accessory_1.is_protective = True
     accessories.append(accessory_1)
 
     accessory_2 = Accessory()
     accessory_2.cost = 5.30
     accessory_2.damaged = False
-    accessory_2.rented = True
+    accessory_2.is_rented = True
     accessory_2.name = 'Handschoenen'
-    accessory_2.protective = True
+    accessory_2.is_protective = True
     accessories.append(accessory_2)
 
     accessory_3 = Accessory()
     accessory_3.cost = 40.2
     accessory_3.damaged = False
-    accessory_3.rented = True
+    accessory_3.is_rented = True
     accessory_3.name = 'Kinderzittje'
-    accessory_3.protective = False
+    accessory_3.is_protective = False
     accessories.append(accessory_3)
 
     accessory_4 = Accessory()
     accessory_4.cost = 4.67
     accessory_4.damaged = False
-    accessory_4.rented = False
+    accessory_4.is_rented = False
     accessory_4.name = 'Regenjas'
-    accessory_4.protective = False
+    accessory_4.is_protective = False
     accessories.append(accessory_4)
 
     write_data('../data/accessories.csv', accessories)

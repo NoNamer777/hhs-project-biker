@@ -12,7 +12,7 @@ class Bike(Item):
 
         self.cost = arguments['cost']
         self.damaged = arguments['damaged']
-        self.rented = arguments['rented']
+        self.is_rented = arguments['rented']
         self.build_for_gender = arguments['build_for_gender']
         self.is_electric = arguments['electric']
 

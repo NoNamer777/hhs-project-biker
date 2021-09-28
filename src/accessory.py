@@ -11,9 +11,9 @@ class Accessory(Item):
 
         self.cost = arguments['cost']
         self.damaged = arguments['damaged']
-        self.rented = arguments['rented']
+        self.is_rented = arguments['rented']
         self.name = arguments['name']
-        self.protective = arguments['protective']
+        self.is_protective = arguments['protective']
 
     def as_dict(self):
         accessory_dict = super().as_dict()
