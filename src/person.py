@@ -1,8 +1,13 @@
-from gender import Gender
+from enum import Enum
 
 GENDER_KEY = 'gender'
 FIRST_NAME_KEY = 'first_name'
 LAST_NAME_KEY = 'last_name'
+
+
+class Gender(Enum):
+    MALE = 'Man'
+    FEMALE = 'Vrouw'
 
 
 class Person:

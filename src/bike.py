@@ -1,5 +1,5 @@
 from item import Item
-from gender import Gender
+from person import Gender
 
 
 class Bike(Item):

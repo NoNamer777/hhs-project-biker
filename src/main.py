@@ -2,11 +2,11 @@ import csv
 from enum import Enum
 from tabulate import tabulate
 
+from accessory import Accessory
+from bike import Bike
 from customer import Customer
 from employee import Employee, EmployeeRole
-from bike import Bike
-from accessory import Accessory
-from gender import Gender
+from person import Gender
 
 
 CLEAN_DATA_FILES = True
