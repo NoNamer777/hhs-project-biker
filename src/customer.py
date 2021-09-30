@@ -3,7 +3,7 @@ from person import Person
 
 class Customer(Person):
     _regular_customer: bool = False
-    _clumsy: bool = False
+    _insured: bool = False
 
     def __init__(self, arguments: dict = None):
         if arguments is None:
@@ -13,13 +13,13 @@ class Customer(Person):
         self.last_name = arguments['last_name']
         self.gender = arguments['gender']
         self.is_regular_customer = arguments['regular_customer']
-        self.is_clumsy = arguments['clumsy']
+        self.is_insured = arguments['insured']
 
     def as_dict(self):
         customer_dict = super().as_dict()
 
         customer_dict['regular_customer'] = self.is_regular_customer
-        customer_dict['clumsy'] = self.is_clumsy
+        customer_dict['insured'] = self.is_insured
 
         return customer_dict
 
@@ -32,9 +32,9 @@ class Customer(Person):
         self._regular_customer = regular_customer
 
     @property
-    def is_clumsy(self) -> bool:
-        return self._clumsy
+    def is_insured(self) -> bool:
+        return self._insured
 
-    @is_clumsy.setter
-    def is_clumsy(self, clumsy) -> None:
-        self._clumsy = clumsy
+    @is_insured.setter
+    def is_insured(self, insured) -> None:
+        self._insured = insured
