@@ -1,1 +1,6 @@
-first_name,last_name,gender,hourly_wage,role
+first_name,last_name,gender,hourly_wage,role
+
+Wim,Eggink,Man,8.52,Repair
+Marloes,Swaan,Vrouw,7.23,Service Desk
+Karlijn,Timan,Vrouw,9.18,Human Resources
+Maaike,Weterink,Vrouw,8.43,Administration

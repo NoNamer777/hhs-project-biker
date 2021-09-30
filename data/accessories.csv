@@ -1,1 +1,7 @@
-cost,damaged,rented,name,protective
+cost,damaged,rented,name,protective,accessory_type
+
+12.03,True,False,Helm,True,Clothing
+5.3,False,True,Handschoenen,True,Clothing
+40.2,False,True,Kinderzittje,False,Luggage Carrier
+4.67,False,False,Regenjas,False,Clothing
+6.54,False,True,Ketting slot,False,Lock

@@ -1,1 +1,6 @@
-cost,damaged,rented,build_for_gender,electric
+cost,damaged,rented,build_for_gender,electric,color,size,model
+
+125.68,False,True,Man,False,Black,Medium,Gazelle
+246.38,False,False,Vrouw,True,Orange,Large,Pegasus
+268.17,True,False,Vrouw,False,Silver,Medium,Hollandia
+136.46,True,False,Vrouw,True,Blue,Medium,EBike

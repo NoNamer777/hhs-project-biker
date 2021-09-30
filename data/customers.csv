@@ -1,1 +1,6 @@
-first_name,last_name,gender,regular_customer,clumsy
+first_name,last_name,gender,regular_customer,insured
+
+Anakin,Skywalker,Man,True,False
+Ahsoko,Tano,Vrouw,False,False
+Padme,Amidala,Vrouw,True,True
+Obi-wan,Kenobi,Man,False,False
