@@ -3,10 +3,22 @@ from person import Person
 
 
 class EmployeeRole(Enum):
-    SERVICE_DESK = 'Service desk'
+    SERVICE_DESK = 'Service Desk'
     REPAIR = 'Repair'
     ADMINISTRATION = 'Administration'
-    HUMAN_RESOURCES = 'Human resources'
+    HUMAN_RESOURCES = 'Human Resources'
+
+
+def parse_employee_role(value: any) -> EmployeeRole:
+    if type(value) == EmployeeRole:
+        return value
+
+    if type(value) is not str:
+        raise TypeError('Unexpected type error: Only pass EmployeeRole or String values.')
+
+    for role in EmployeeRole:
+        if role.value == value:
+            return role
 
 
 class Employee(Person):
@@ -27,7 +39,7 @@ class Employee(Person):
         employee_dict = super().as_dict()
 
         employee_dict['hourly_wage'] = self.hourly_wage
-        employee_dict['role'] = self.role
+        employee_dict['role'] = self.role.value
 
         return employee_dict
 
@@ -44,5 +56,5 @@ class Employee(Person):
         return self._role
 
     @role.setter
-    def role(self, role) -> None:
-        self._role = role if type(role) == EmployeeRole else EmployeeRole[role.split('.')[1]]
+    def role(self, role: any) -> None:
+        self._role = parse_employee_role(role)

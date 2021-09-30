@@ -10,6 +10,18 @@ class Gender(Enum):
     FEMALE = 'Vrouw'
 
 
+def parse_gender(value: any) -> Gender:
+    if type(value) == Gender:
+        return value
+
+    if type(value) is not str:
+        raise TypeError('Unexpected type error: Only pass Gender or String values.')
+
+    for gender in Gender:
+        if gender.value == value:
+            return gender
+
+
 class Person:
     _first_name: str = None
     _last_name: str = None
@@ -19,7 +31,7 @@ class Person:
         return {
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'gender': self.gender,
+            'gender': self.gender.value,
         }
 
     def name(self):
@@ -30,8 +42,8 @@ class Person:
         return self._gender
 
     @gender.setter
-    def gender(self, gender):
-        self._gender = gender if type(gender) == Gender else Gender[gender.split('.')[1]]
+    def gender(self, gender: any):
+        self._gender = parse_gender(gender)
 
     @property
     def first_name(self) -> str:

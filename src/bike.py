@@ -1,5 +1,5 @@
 from item import Item
-from person import Gender
+from person import Gender, parse_gender
 
 
 class Bike(Item):
@@ -19,7 +19,7 @@ class Bike(Item):
     def as_dict(self):
         bike_dict = super().as_dict()
 
-        bike_dict['build_for_gender'] = self.build_for_gender
+        bike_dict['build_for_gender'] = self.build_for_gender.value
         bike_dict['electric'] = self.is_electric
 
         return bike_dict
@@ -29,8 +29,8 @@ class Bike(Item):
         return self._build_for_gender
 
     @build_for_gender.setter
-    def build_for_gender(self, gender: Gender) -> None:
-        self._build_for_gender = gender
+    def build_for_gender(self, gender: any) -> None:
+        self._build_for_gender = parse_gender(gender)
 
     @property
     def is_electric(self) -> bool:
