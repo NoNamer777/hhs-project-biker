@@ -1,5 +1,6 @@
 import csv
 from enum import Enum
+from os import getcwd, chdir
 
 from accessory import Accessory
 from bike import Bike
@@ -17,7 +18,7 @@ class ItemDataType(Enum):
     ACCESSORY = 1
 
 
-def read_data(data_src: str, data_type: PersonDataType or ItemDataType) -> []:
+def read_data(data_src: str, data_type: PersonDataType or ItemDataType):
     if data_type not in ItemDataType and data_type not in PersonDataType:
         raise AttributeError(
             f"'{data_type}' is not a valid type of data to create. "
@@ -42,7 +43,7 @@ def read_data(data_src: str, data_type: PersonDataType or ItemDataType) -> []:
     return objects
 
 
-def print_in_table(data: [any], data_type: PersonDataType or ItemDataType) -> None:
+def print_in_table(data, data_type: PersonDataType or ItemDataType) -> None:
     if data_type not in ItemDataType and data_type not in PersonDataType:
         raise AttributeError(
             f"'{data_type}' is not a valid type of data to create. "
@@ -65,7 +66,7 @@ def print_in_table(data: [any], data_type: PersonDataType or ItemDataType) -> No
     print()
 
 
-def print_row(data: [any], bold: bool = False) -> None:
+def print_row(data, bold: bool = False) -> None:
     for entry in data:
         print(end='| ')
 
@@ -80,10 +81,13 @@ def print_row(data: [any], bold: bool = False) -> None:
 
 
 def main() -> None:
-    customers = read_data('../data/customers.csv', PersonDataType.CUSTOMER)
-    employees = read_data('../data/employees.csv', PersonDataType.EMPLOYEE)
-    bikes = read_data('../data/bikes.csv', ItemDataType.BIKE)
-    accessories = read_data('../data/accessories.csv', ItemDataType.ACCESSORY)
+    if getcwd().endswith('src'):
+        chdir('../')
+
+    customers = read_data('data/customers.csv', PersonDataType.CUSTOMER)
+    employees = read_data('data/employees.csv', PersonDataType.EMPLOYEE)
+    bikes = read_data('data/bikes.csv', ItemDataType.BIKE)
+    accessories = read_data('data/accessories.csv', ItemDataType.ACCESSORY)
 
     print_in_table(customers, PersonDataType.CUSTOMER)
     print_in_table(employees, PersonDataType.EMPLOYEE)
