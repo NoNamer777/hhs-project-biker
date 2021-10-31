@@ -10,6 +10,9 @@ class Person:
         self.firstname = data.get(KEY_PERSON_FIRST_NAME)
         self.lastname = data.get(KEY_PERSON_LAST_NAME)
 
+    def values(self):
+        return [self.firstname, self.lastname]
+
     @property
     def firstname(self):
         return self._firstname

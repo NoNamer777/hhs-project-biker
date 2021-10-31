@@ -24,6 +24,19 @@ class Customer(Person):
         self.city = data.get(KEY_CUSTOMER_CITY)
         self.country = data.get(KEY_CUSTOMER_COUNTRY)
 
+    def values(self):
+        values = super().values()
+        values.extend([
+            self.street,
+            self.house_number,
+            self.house_number_addition,
+            self.zip_code,
+            self.city,
+            self.country
+        ])
+
+        return values
+
     @property
     def street(self):
         return self._street

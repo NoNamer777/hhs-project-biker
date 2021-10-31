@@ -12,6 +12,9 @@ class Item:
         self.price = data.get(KEY_ITEM_PRICE)
         self.deposit = data.get(KEY_ITEM_DEPOSIT)
 
+    def values(self):
+        return [self.brand, self.price, self.deposit]
+
     @property
     def brand(self):
         return self._brand

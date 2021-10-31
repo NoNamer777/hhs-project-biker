@@ -34,6 +34,12 @@ class Accessory(Item):
         self.accessory_type = data.get(KEY_ACCESSORY_TYPE)
         self.new_price = data.get(KEY_ACCESSORY_NEW_PRICE)
 
+    def values(self):
+        values = super().values()
+        values.extend([self.accessory_type.value, self.new_price])
+
+        return values
+
     @property
     def new_price(self):
         return self._new_price

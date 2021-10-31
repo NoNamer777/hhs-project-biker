@@ -33,6 +33,12 @@ class Bicycle(Item):
 
         self.bicycle_type = data.get(KEY_BICYCLE_TYPE)
 
+    def values(self):
+        values = super().values()
+        values.extend([self.bicycle_type.value])
+
+        return values
+
     @property
     def bicycle_type(self):
         return self._bicycle_type

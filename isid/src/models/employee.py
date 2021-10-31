@@ -14,6 +14,12 @@ class Employee(Person):
         self.role = data.get(KEY_EMPLOYEE_ROLE)
         self.username = data.get(KEY_EMPLOYEE_USERNAME)
 
+    def values(self):
+        values = super().values()
+        values.extend([self.role, self.username])
+
+        return values
+
     @property
     def role(self):
         return self._role
