@@ -6,6 +6,8 @@ from tkinter.font import BOLD, Font
 from tkinter.ttk import Frame, Label, Notebook
 
 KEY_HEADER_TEXT = 'header_text'
+KEY_DATA_LOCATION = 'data_location'
+KEY_DATA_TYPE = 'data_type'
 
 
 class OverviewFrame:
@@ -23,13 +25,19 @@ class OverviewFrame:
 
         header.grid(row=1, column=1, columnspan=2, ipady=8)
 
-        overview = Text(self.frame, borderwidth=1, relief=SOLID)
-        overview.grid(row=2, column=1, columnspan=2)
+        self._overview = Text(self.frame, borderwidth=1, relief=SOLID)
+        self._overview.grid(row=2, column=1, columnspan=2)
 
         self.frame.grid_columnconfigure(2, weight=1)
+
+        # read_data(kwargs.get(KEY_DATA_LOCATION), kwargs.get(KEY_DATA_TYPE))
 
         self.frame.pack(fill=BOTH, expand=True)
 
     @property
     def frame(self):
         return self._frame
+
+    @property
+    def overview(self):
+        return self._overview

@@ -1,4 +1,4 @@
-from person import Person
+from .person import Person
 
 KEY_EMPLOYEE_ROLE = 'role'
 KEY_EMPLOYEE_USERNAME = 'username'

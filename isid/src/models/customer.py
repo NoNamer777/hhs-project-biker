@@ -1,4 +1,4 @@
-from person import Person
+from .person import Person
 
 KEY_CUSTOMER_STREET = 'street'
 KEY_CUSTOMER_HOUSE_NUMBER = 'house_number'

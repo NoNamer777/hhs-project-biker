@@ -6,6 +6,7 @@ from tkinter.constants import BOTH
 from tkinter.ttk import Notebook, Frame, Label
 
 from .overviewFrame import OverviewFrame
+from .. import models
 
 WINDOW_TITLE = 'Biker Management'
 WINDOW_DEFAULT_WIDTH = 800
@@ -16,7 +17,7 @@ TAB_MAIN_MENU_LABEL = 'Main Menu'
 FILE_LOCATION = Path(__file__)
 
 # Change the working directory of the Python script to where the project root would be
-chdir(FILE_LOCATION.parent.parent)
+chdir(FILE_LOCATION.parent.parent.parent)
 
 
 class BikerManagementApp:
@@ -33,16 +34,36 @@ class BikerManagementApp:
 
         self._create_main_menu_frame()
 
-        bicycle_frame = OverviewFrame(self.notebook, header_text='Bicycles Overview')
+        bicycle_frame = OverviewFrame(
+            self.notebook,
+            header_text='Bicycles Overview',
+            data_location=join('assets', 'data', 'bicycles.csv'),
+            data_type=models.Bicycle
+        )
         self.notebook.add(bicycle_frame.frame, text='Bicycles')
 
-        bicycle_frame = OverviewFrame(self.notebook, header_text='Accessories Overview')
+        bicycle_frame = OverviewFrame(
+            self.notebook,
+            header_text='Accessories Overview',
+            data_location=join('assets', 'data', 'accessories.csv'),
+            data_type=models.Accessory
+        )
         self.notebook.add(bicycle_frame.frame, text='Accessories')
 
-        bicycle_frame = OverviewFrame(self.notebook, header_text='Employees Overview')
+        bicycle_frame = OverviewFrame(
+            self.notebook,
+            header_text='Employees Overview',
+            data_location=join('assets', 'data', 'employees.csv'),
+            data_type=models.Employee
+        )
         self.notebook.add(bicycle_frame.frame, text='Employees')
 
-        bicycle_frame = OverviewFrame(self.notebook, header_text='Customers Overview')
+        bicycle_frame = OverviewFrame(
+            self.notebook,
+            header_text='Customers Overview',
+            data_location=join('assets', 'data', 'customers.csv'),
+            data_type=models.Customer
+        )
         self.notebook.add(bicycle_frame.frame, text='Customers')
 
     def _create_main_menu_frame(self):

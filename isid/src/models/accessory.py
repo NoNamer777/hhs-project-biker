@@ -1,5 +1,6 @@
 from enum import Enum
-from item import Item
+
+from .item import Item
 
 KEY_ACCESSORY_TYPE = 'accessory_type'
 KEY_ACCESSORY_NEW_PRICE = 'new_price'

@@ -1,11 +1,13 @@
 from enum import Enum
-from item import Item
+
+from .item import Item
 
 KEY_BICYCLE_TYPE = 'bicycle_type'
 
 
 class BicycleType(Enum):
     ELECTRIC = 'Electric'
+    REGULAR = 'Regular'
     MALE = 'Male'
     FEMALE = 'Female'
 
