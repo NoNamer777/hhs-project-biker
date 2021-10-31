@@ -12,8 +12,8 @@ class BicycleType(Enum):
     FEMALE = 'Female'
 
 
-def parse_bicycle_type(value) -> BicycleType:
-    if type(value) is BicycleType:
+def parse_bicycle_type(value) -> BicycleType or None:
+    if type(value) is BicycleType or value is None:
         return value
 
     if type(value) is not str:

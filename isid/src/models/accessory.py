@@ -12,8 +12,8 @@ class AccessoryType(Enum):
     BIKE_BAG = 'Bicycle bag'
 
 
-def parse_accessory_type(value) -> AccessoryType:
-    if type(value) is AccessoryType:
+def parse_accessory_type(value) -> AccessoryType or None:
+    if type(value) is AccessoryType or value is None:
         return value
 
     if type(value) is not str:
