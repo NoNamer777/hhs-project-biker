@@ -3,9 +3,12 @@ KEY_PERSON_LAST_NAME = 'lastname'
 
 
 class Person:
-    def __init__(self, **kwargs):
-        self.firstname = kwargs.get(KEY_PERSON_FIRST_NAME)
-        self.lastname = kwargs.get(KEY_PERSON_LAST_NAME)
+    def __init__(self, data: dict):
+        if data is None:
+            return
+
+        self.firstname = data.get(KEY_PERSON_FIRST_NAME)
+        self.lastname = data.get(KEY_PERSON_LAST_NAME)
 
     @property
     def firstname(self):

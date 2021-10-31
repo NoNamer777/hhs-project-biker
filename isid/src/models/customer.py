@@ -11,15 +11,18 @@ MAX_LENGTH_ZIP_CODE = 7
 
 
 class Customer(Person):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, data: dict):
+        super().__init__(data)
 
-        self.street = kwargs.get(KEY_CUSTOMER_STREET)
-        self.house_number = kwargs.get(KEY_CUSTOMER_HOUSE_NUMBER)
-        self.house_number_addition = kwargs.get(KEY_CUSTOMER_HOUSE_NUMBER_ADDITION)
-        self.zip_code = kwargs.get(KEY_CUSTOMER_ZIP_CODE)
-        self.city = kwargs.get(KEY_CUSTOMER_CITY)
-        self.country = kwargs.get(KEY_CUSTOMER_COUNTRY)
+        if data is None:
+            return
+
+        self.street = data.get(KEY_CUSTOMER_STREET)
+        self.house_number = data.get(KEY_CUSTOMER_HOUSE_NUMBER)
+        self.house_number_addition = data.get(KEY_CUSTOMER_HOUSE_NUMBER_ADDITION)
+        self.zip_code = data.get(KEY_CUSTOMER_ZIP_CODE)
+        self.city = data.get(KEY_CUSTOMER_CITY)
+        self.country = data.get(KEY_CUSTOMER_COUNTRY)
 
     @property
     def street(self):

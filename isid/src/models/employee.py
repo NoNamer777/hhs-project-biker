@@ -5,11 +5,14 @@ KEY_EMPLOYEE_USERNAME = 'username'
 
 
 class Employee(Person):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, data: dict):
+        super().__init__(data)
 
-        self.role = kwargs.get(KEY_EMPLOYEE_ROLE)
-        self.username = kwargs.get(KEY_EMPLOYEE_USERNAME)
+        if data is None:
+            return
+
+        self.role = data.get(KEY_EMPLOYEE_ROLE)
+        self.username = data.get(KEY_EMPLOYEE_USERNAME)
 
     @property
     def role(self):

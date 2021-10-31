@@ -25,10 +25,13 @@ def parse_bicycle_type(value) -> BicycleType or None:
 
 
 class Bicycle(Item):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, data: dict):
+        super().__init__(data)
 
-        self.bicycle_type = kwargs.get(KEY_BICYCLE_TYPE)
+        if data is None:
+            return
+
+        self.bicycle_type = data.get(KEY_BICYCLE_TYPE)
 
     @property
     def bicycle_type(self):

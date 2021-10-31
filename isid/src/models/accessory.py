@@ -25,11 +25,14 @@ def parse_accessory_type(value) -> AccessoryType or None:
 
 
 class Accessory(Item):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, data: dict):
+        super().__init__(data)
 
-        self.accessory_type = kwargs.get(KEY_ACCESSORY_TYPE)
-        self.new_price = kwargs.get(KEY_ACCESSORY_NEW_PRICE)
+        if data is None:
+            return
+
+        self.accessory_type = data.get(KEY_ACCESSORY_TYPE)
+        self.new_price = data.get(KEY_ACCESSORY_NEW_PRICE)
 
     @property
     def new_price(self):

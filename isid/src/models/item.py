@@ -4,10 +4,13 @@ KEY_ITEM_DEPOSIT = 'deposit'
 
 
 class Item:
-    def __init__(self, **kwargs):
-        self.brand = kwargs.get(KEY_ITEM_BRAND)
-        self.price = kwargs.get(KEY_ITEM_PRICE)
-        self.deposit = kwargs.get(KEY_ITEM_DEPOSIT)
+    def __init__(self, data: dict):
+        if data is None:
+            return
+
+        self.brand = data.get(KEY_ITEM_BRAND)
+        self.price = data.get(KEY_ITEM_PRICE)
+        self.deposit = data.get(KEY_ITEM_DEPOSIT)
 
     @property
     def brand(self):
