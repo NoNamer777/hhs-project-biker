@@ -38,7 +38,10 @@ class Customer(Person):
 
     @house_number.setter
     def house_number(self, house_number: int):
-        self._house_number = house_number
+        if isinstance(house_number, str) and not house_number.isnumeric():
+            raise ValueError(f'Expected Customer house number to a number, but received {house_number}')
+
+        self._house_number = int(house_number)
 
     @property
     def house_number_addition(self):
@@ -73,7 +76,7 @@ class Customer(Person):
 
         # Check if the last 2 characters are letters
         for index in range(0, 1):
-            has_space = zip_code.find(' ') is not -1
+            has_space = zip_code.find(' ') != -1
 
             character = zip_code[index + (5 if not has_space else 6)]
 
