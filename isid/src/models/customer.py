@@ -42,7 +42,7 @@ class Customer(Person):
 
     @property
     def house_number_addition(self):
-        return self._house_number
+        return self._house_number_addition
 
     @house_number_addition.setter
     def house_number_addition(self, house_number_addition: str):
