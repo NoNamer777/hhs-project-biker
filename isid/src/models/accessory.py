@@ -40,6 +40,12 @@ class Accessory(Item):
 
         return values
 
+    def attributes(self):
+        attributes = super().attributes()
+        attributes.extend(['Accessory type', 'New price'])
+
+        return attributes
+
     @property
     def new_price(self):
         return self._new_price

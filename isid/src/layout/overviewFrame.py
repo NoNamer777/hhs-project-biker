@@ -10,7 +10,6 @@ from ..utils import read_data
 KEY_HEADER_TEXT = 'header_text'
 KEY_DATA_LOCATION = 'data_location'
 KEY_DATA_TYPE = 'data_type'
-KEY_DATA_HEADERS = 'data_headers'
 WIDTH_OVERVIEW = 136
 
 
@@ -39,7 +38,7 @@ class OverviewFrame:
         self.frame.grid_columnconfigure(2, weight=1)
 
         objects = read_data(kwargs.get(KEY_DATA_LOCATION), kwargs.get(KEY_DATA_TYPE))
-        headers = kwargs.get(KEY_DATA_HEADERS)
+        headers = objects[0].attributes()
 
         self._insert_data(objects, headers)
 
@@ -61,7 +60,7 @@ class OverviewFrame:
         line = '-' * WIDTH_OVERVIEW + '\n'
         self.overview.insert(END, line)
 
-        # Insert every entity
+        # Insert every entity in Text widget
         for entry in objects:
             formatted_entry = self._format_line(entry.values())
             self.overview.insert(END, formatted_entry)

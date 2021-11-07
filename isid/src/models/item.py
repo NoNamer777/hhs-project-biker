@@ -15,6 +15,9 @@ class Item:
     def values(self):
         return [self.brand, self.price, self.deposit]
 
+    def attributes(self):
+        return ['Brand', 'Price', 'Deposit']
+
     @property
     def brand(self):
         return self._brand

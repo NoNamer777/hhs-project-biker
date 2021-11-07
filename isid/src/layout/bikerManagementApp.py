@@ -14,16 +14,12 @@ WINDOW_DEFAULT_HEIGHT = 600
 TAB_MAIN_MENU_TEXT = 'Main Menu'
 TAB_BICYCLE_TEXT = 'Bicycles'
 HEADER_BICYCLE_TEXT = 'Bicycles Overview'
-BICYCLE_HEADERS = ['Brand', 'Price', 'deposit', 'Bicycle Type']
 TAB_ACCESSORY_TEXT = 'Accessories'
 HEADER_ACCESSORY_TEXT = 'Accessories Overview'
-ACCESSORY_HEADERS = ['Brand', 'Price', 'deposit', 'Accessory Type', 'New Price']
 TAB_EMPLOYEE_TEXT = 'Employees'
 HEADER_EMPLOYEE_TEXT = 'Employees Overview'
-EMPLOYEE_HEADERS = ['Firstname', 'Lastname', 'Role', 'Username']
 TAB_CUSTOMER_TEXT = 'Customers'
 HEADER_CUSTOMER_TEXT = 'Customers Overview'
-CUSTOMER_HEADERS = ['Firstname', 'Lastname', 'Street', 'Number', 'Addition', 'Zip code', 'City', 'Country']
 
 # Get the current file location of this file
 FILE_LOCATION = Path(__file__)
@@ -51,8 +47,7 @@ class BikerManagementApp:
             self.notebook,
             header_text=HEADER_BICYCLE_TEXT,
             data_location=join('assets', 'data', 'bicycles.csv'),
-            data_type=Bicycle,
-            data_headers=BICYCLE_HEADERS
+            data_type=Bicycle
         )
         self.notebook.add(bicycle_frame.frame, text=TAB_BICYCLE_TEXT)
 
@@ -60,8 +55,7 @@ class BikerManagementApp:
             self.notebook,
             header_text=HEADER_ACCESSORY_TEXT,
             data_location=join('assets', 'data', 'accessories.csv'),
-            data_type=Accessory,
-            data_headers=ACCESSORY_HEADERS
+            data_type=Accessory
         )
         self.notebook.add(accessory_frame.frame, text=TAB_ACCESSORY_TEXT)
 

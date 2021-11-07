@@ -39,6 +39,12 @@ class Bicycle(Item):
 
         return values
 
+    def attributes(self):
+        attributes = super().attributes()
+        attributes.append('Bicycle type')
+
+        return attributes
+
     @property
     def bicycle_type(self):
         return self._bicycle_type
