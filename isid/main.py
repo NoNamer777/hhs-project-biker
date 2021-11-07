@@ -1,4 +1,4 @@
-from src.layout.bikerManagementApp import BikerManagementApp
+from src.layout import BikerManagementApp
 
 
 def main():
