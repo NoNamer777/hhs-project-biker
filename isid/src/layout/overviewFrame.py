@@ -1,7 +1,7 @@
 from os import getcwd
 from os.path import join
 from tkinter import Text, PhotoImage
-from tkinter.constants import BOTH, SOLID, END, DISABLED
+from tkinter.constants import BOTH, SOLID, END, DISABLED, NORMAL
 from tkinter.font import BOLD, Font
 from tkinter.ttk import Frame, Label, Notebook
 
@@ -32,6 +32,7 @@ class OverviewFrame:
         self._overview.grid(row=2, column=1, columnspan=2)
 
         self.frame.grid_columnconfigure(2, weight=1)
+        self.overview.config(state=DISABLED)
 
         self.frame.pack(fill=BOTH, expand=True)
 
@@ -40,6 +41,7 @@ class OverviewFrame:
         Inserts data into the Text Widget in a table like style
         :param objects: The data to insert
         """
+        self.overview.config(state=NORMAL)
         headers = objects[0].attributes()
 
         # Insert the entity attributes as headers.
