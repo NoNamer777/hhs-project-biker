@@ -13,6 +13,9 @@ class Person:
     def values(self):
         return [self.firstname, self.lastname]
 
+    def attributes(self):
+        return ['Firstname', 'lastname']
+
     @property
     def firstname(self):
         return self._firstname

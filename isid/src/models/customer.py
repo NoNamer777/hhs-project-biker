@@ -37,6 +37,12 @@ class Customer(Person):
 
         return values
 
+    def attributes(self):
+        attributes = super().attributes()
+        attributes.extend(['Street', 'House number', 'Addition', 'Zip code', 'City', 'Country'])
+
+        return attributes
+
     @property
     def street(self):
         return self._street

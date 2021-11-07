@@ -20,6 +20,12 @@ class Employee(Person):
 
         return values
 
+    def attributes(self):
+        attributes = super().attributes()
+        attributes.extend(['Role', 'Username'])
+
+        return attributes
+
     @property
     def role(self):
         return self._role
