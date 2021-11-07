@@ -5,11 +5,7 @@ from tkinter.constants import BOTH, SOLID, END, DISABLED
 from tkinter.font import BOLD, Font
 from tkinter.ttk import Frame, Label, Notebook
 
-from ..utils import read_data
-
 KEY_HEADER_TEXT = 'header_text'
-KEY_DATA_LOCATION = 'data_location'
-KEY_DATA_TYPE = 'data_type'
 WIDTH_OVERVIEW = 136
 
 
@@ -37,21 +33,15 @@ class OverviewFrame:
 
         self.frame.grid_columnconfigure(2, weight=1)
 
-        objects = read_data(kwargs.get(KEY_DATA_LOCATION), kwargs.get(KEY_DATA_TYPE))
-        headers = objects[0].attributes()
-
-        self._insert_data(objects, headers)
-
-        self.overview['state'] = DISABLED
-
         self.frame.pack(fill=BOTH, expand=True)
 
-    def _insert_data(self, objects, headers):
+    def insert_data(self, objects):
         """
         Inserts data into the Text Widget in a table like style
         :param objects: The data to insert
-        :param headers: The attributes of the data
         """
+        headers = objects[0].attributes()
+
         # Insert the entity attributes as headers.
         formatted_headers = self._format_line(headers)
         self.overview.insert(END, formatted_headers)
@@ -64,6 +54,8 @@ class OverviewFrame:
         for entry in objects:
             formatted_entry = self._format_line(entry.values())
             self.overview.insert(END, formatted_entry)
+
+        self.overview.config(state=DISABLED)
 
     def _format_line(self, data) -> str:
         """

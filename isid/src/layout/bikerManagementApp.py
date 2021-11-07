@@ -3,10 +3,11 @@ from os.path import join
 from pathlib import Path
 from tkinter import Tk, PhotoImage
 from tkinter.constants import BOTH
-from tkinter.ttk import Notebook, Frame, Label
+from tkinter.ttk import Notebook, Frame, Label, Button
 
 from .overviewFrame import OverviewFrame
 from ..models import Bicycle, Accessory, Employee, Customer
+from ..utils import read_data
 
 WINDOW_TITLE = 'Biker Management'
 WINDOW_DEFAULT_WIDTH = 1152
@@ -20,6 +21,7 @@ TAB_EMPLOYEE_TEXT = 'Employees'
 HEADER_EMPLOYEE_TEXT = 'Employees Overview'
 TAB_CUSTOMER_TEXT = 'Customers'
 HEADER_CUSTOMER_TEXT = 'Customers Overview'
+INIT_DATA_BTN_TEXT = 'Initialize Data'
 
 # Get the current file location of this file
 FILE_LOCATION = Path(__file__)
@@ -43,39 +45,17 @@ class BikerManagementApp:
         self._create_main_menu_frame()
 
         # Create frames for the individual entities
-        bicycle_frame = OverviewFrame(
-            self.notebook,
-            header_text=HEADER_BICYCLE_TEXT,
-            data_location=join('assets', 'data', 'bicycles.csv'),
-            data_type=Bicycle
-        )
-        self.notebook.add(bicycle_frame.frame, text=TAB_BICYCLE_TEXT)
+        self._bicycles_frame = OverviewFrame(self.notebook, header_text=HEADER_BICYCLE_TEXT)
+        self.notebook.add(self._bicycles_frame.frame, text=TAB_BICYCLE_TEXT)
 
-        accessory_frame = OverviewFrame(
-            self.notebook,
-            header_text=HEADER_ACCESSORY_TEXT,
-            data_location=join('assets', 'data', 'accessories.csv'),
-            data_type=Accessory
-        )
-        self.notebook.add(accessory_frame.frame, text=TAB_ACCESSORY_TEXT)
+        self._accessories_frame = OverviewFrame(self.notebook, header_text=HEADER_ACCESSORY_TEXT)
+        self.notebook.add(self._accessories_frame.frame, text=TAB_ACCESSORY_TEXT)
 
-        employee_frame = OverviewFrame(
-            self.notebook,
-            header_text=HEADER_EMPLOYEE_TEXT,
-            data_location=join('assets', 'data', 'employees.csv'),
-            data_type=Employee,
-            data_headers=EMPLOYEE_HEADERS
-        )
-        self.notebook.add(employee_frame.frame, text=TAB_EMPLOYEE_TEXT)
+        self._employees_frame = OverviewFrame(self.notebook, header_text=HEADER_EMPLOYEE_TEXT)
+        self.notebook.add(self._employees_frame.frame, text=TAB_EMPLOYEE_TEXT)
 
-        customer_frame = OverviewFrame(
-            self.notebook,
-            header_text=HEADER_CUSTOMER_TEXT,
-            data_location=join('assets', 'data', 'customers.csv'),
-            data_type=Customer,
-            data_headers=CUSTOMER_HEADERS
-        )
-        self.notebook.add(customer_frame.frame, text=TAB_CUSTOMER_TEXT)
+        self._customers_frame = OverviewFrame(self.notebook, header_text=HEADER_CUSTOMER_TEXT)
+        self.notebook.add(self._customers_frame.frame, text=TAB_CUSTOMER_TEXT)
 
     def _create_main_menu_frame(self):
         """
@@ -87,8 +67,25 @@ class BikerManagementApp:
         banner = self._create_banner(self._main_menu_frame)
         banner.pack()
 
+        # Add a button to initialize the data
+        initialize_data_button = Button(self._main_menu_frame, text=INIT_DATA_BTN_TEXT, command=self.initialize_data)
+        initialize_data_button.pack()
+
         self._main_menu_frame.pack(fill=BOTH, expand=True)
         self._notebook.add(self._main_menu_frame, text=TAB_MAIN_MENU_TEXT)
+
+    def initialize_data(self):
+        accessories = read_data(join('assets', 'data', 'accessories.csv'), Accessory)
+        self._accessories_frame.insert_data(accessories)
+
+        bicycles = read_data(join('assets', 'data', 'bicycles.csv'), Bicycle)
+        self._bicycles_frame.insert_data(bicycles)
+
+        customers = read_data(join('assets', 'data', 'customers.csv'), Customer)
+        self._customers_frame.insert_data(customers)
+
+        employees = read_data(join('assets', 'data', 'employees.csv'), Employee)
+        self._employees_frame.insert_data(employees)
 
     def _create_banner(self, parent: Frame) -> Label:
         """
