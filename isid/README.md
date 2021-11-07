@@ -19,7 +19,7 @@ Project (isid)
 └─── src
 |    └─── layout
 |    |        bikerManagementApp.py
-|    |        overvierFrame.py
+|    |        overviewFrame.py
 |    |
 |    └─── models
 |    |        accessory.py
