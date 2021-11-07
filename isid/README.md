@@ -1,6 +1,6 @@
 # HHS Project Biker
 
-This Project is structured as follows:
+This Project is created by Oscar Wellner, 21144192, and is structured as follows:
 
 ```
 Project (isid)
