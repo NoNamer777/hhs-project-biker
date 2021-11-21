@@ -3,6 +3,10 @@ KEY_PERSON_LAST_NAME = 'lastname'
 
 
 class Person:
+    @classmethod
+    def attributes(cls):
+        return ['Firstname', 'lastname']
+
     def __init__(self, data: dict):
         if data is None:
             return
@@ -10,11 +14,8 @@ class Person:
         self.firstname = data.get(KEY_PERSON_FIRST_NAME)
         self.lastname = data.get(KEY_PERSON_LAST_NAME)
 
-    def values(self):
+    def values(self = None):
         return [self.firstname, self.lastname]
-
-    def attributes(self):
-        return ['Firstname', 'lastname']
 
     @property
     def firstname(self):

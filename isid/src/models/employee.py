@@ -5,7 +5,14 @@ KEY_EMPLOYEE_USERNAME = 'username'
 EMPLOYEE_HEADERS = ('Lastname', 'Role', 'Username')
 
 class Employee(Person):
-    def __init__(self, data: dict):
+    @classmethod
+    def attributes(cls):
+        attributes = Person.attributes()
+        attributes.extend(['Role', 'Username'])
+
+        return attributes
+
+    def __init__(self, data: dict = None):
         super().__init__(data)
 
         if data is None:
@@ -19,12 +26,6 @@ class Employee(Person):
         values.extend([self.role, self.username])
 
         return values
-
-    def attributes(self):
-        attributes = super().attributes()
-        attributes.extend(['Role', 'Username'])
-
-        return attributes
 
     @property
     def role(self):

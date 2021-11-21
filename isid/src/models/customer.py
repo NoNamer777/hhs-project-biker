@@ -20,7 +20,14 @@ MAX_LENGTH_ZIP_CODE = 7
 
 
 class Customer(Person):
-    def __init__(self, data: dict):
+    @classmethod
+    def attributes(cls):
+        attributes = Person.attributes()
+        attributes.extend(['Street', 'House number', 'House number Addition', 'Zip code', 'City', 'Country'])
+
+        return attributes
+
+    def __init__(self, data: dict = None):
         super().__init__(data)
 
         if data is None:
@@ -45,12 +52,6 @@ class Customer(Person):
         ])
 
         return values
-
-    def attributes(self):
-        attributes = super().attributes()
-        attributes.extend(['Street', 'House number', 'Addition', 'Zip code', 'City', 'Country'])
-
-        return attributes
 
     @property
     def street(self):

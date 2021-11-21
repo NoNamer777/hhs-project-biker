@@ -26,7 +26,14 @@ def parse_accessory_type(value) -> AccessoryType or None:
 
 
 class Accessory(Item):
-    def __init__(self, data: dict):
+    @classmethod
+    def attributes(cls):
+        attributes = Item.attributes()
+        attributes.extend(['Accessory type', 'New price'])
+
+        return attributes
+
+    def __init__(self, data: dict = None):
         super().__init__(data)
 
         if data is None:
@@ -40,12 +47,6 @@ class Accessory(Item):
         values.extend([self.accessory_type.value, self.new_price])
 
         return values
-
-    def attributes(self):
-        attributes = super().attributes()
-        attributes.extend(['Accessory type', 'New price'])
-
-        return attributes
 
     @property
     def new_price(self):

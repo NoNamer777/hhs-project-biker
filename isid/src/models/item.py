@@ -4,7 +4,11 @@ KEY_ITEM_DEPOSIT = 'deposit'
 
 
 class Item:
-    def __init__(self, data: dict):
+    @classmethod
+    def attributes(cls):
+        return ['Brand', 'Price', 'Deposit']
+
+    def __init__(self, data: dict = None):
         if data is None:
             return
 
@@ -14,9 +18,6 @@ class Item:
 
     def values(self):
         return [self.brand, self.price, self.deposit]
-
-    def attributes(self):
-        return ['Brand', 'Price', 'Deposit']
 
     @property
     def brand(self):

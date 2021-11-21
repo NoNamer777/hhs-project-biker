@@ -26,7 +26,14 @@ def parse_bicycle_type(value) -> BicycleType or None:
 
 
 class Bicycle(Item):
-    def __init__(self, data: dict):
+    @classmethod
+    def attributes(cls):
+        attributes = Item.attributes()
+        attributes.append('Bicycle type')
+
+        return attributes
+
+    def __init__(self, data: dict = None):
         super().__init__(data)
 
         if data is None:
@@ -39,12 +46,6 @@ class Bicycle(Item):
         values.extend([self.bicycle_type.value])
 
         return values
-
-    def attributes(self):
-        attributes = super().attributes()
-        attributes.append('Bicycle type')
-
-        return attributes
 
     @property
     def bicycle_type(self):
