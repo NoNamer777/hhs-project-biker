@@ -40,6 +40,10 @@ chdir(FILE_LOCATION.parent.parent.parent)
 
 class BikerManagementApp:
     def __init__(self):
+        print('Initializing application')
+
+        self._database_connection = DatabaseConnection()
+
         # Create and configure the application window
         self._app = Tk()
         self._app.title(WINDOW_TITLE)
@@ -159,3 +163,7 @@ class BikerManagementApp:
     @property
     def notebook(self) -> Notebook:
         return self._notebook
+
+    @property
+    def database_connection(self) -> DatabaseConnection:
+        return self._database_connection

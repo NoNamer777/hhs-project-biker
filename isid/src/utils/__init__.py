@@ -1,1 +1,1 @@
-from .dataReader import read_data
+from .dataReader import DatabaseConnection
