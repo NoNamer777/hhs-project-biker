@@ -2,7 +2,7 @@ from .person import Person
 
 KEY_CUSTOMER_STREET = 'street'
 KEY_CUSTOMER_HOUSE_NUMBER = 'house_number'
-KEY_CUSTOMER_HOUSE_NUMBER_ADDITION = 'house_number_add'
+KEY_CUSTOMER_HOUSE_NUMBER_ADDITION = 'house_number_addition'
 KEY_CUSTOMER_ZIP_CODE = 'zip_code'
 KEY_CUSTOMER_CITY = 'city'
 KEY_CUSTOMER_COUNTRY = 'country'
