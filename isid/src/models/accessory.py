@@ -4,6 +4,7 @@ from .item import Item
 
 KEY_ACCESSORY_TYPE = 'accessory_type'
 KEY_ACCESSORY_NEW_PRICE = 'new_price'
+ACCESSORY_HEADERS = ('Price', 'Deposit', 'New Price', 'Accessory Type')
 
 
 class AccessoryType(Enum):

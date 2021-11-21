@@ -2,7 +2,7 @@ from .person import Person
 
 KEY_EMPLOYEE_ROLE = 'role'
 KEY_EMPLOYEE_USERNAME = 'username'
-
+EMPLOYEE_HEADERS = ('Lastname', 'Role', 'Username')
 
 class Employee(Person):
     def __init__(self, data: dict):

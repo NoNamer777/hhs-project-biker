@@ -6,6 +6,15 @@ KEY_CUSTOMER_HOUSE_NUMBER_ADDITION = 'house_number_addition'
 KEY_CUSTOMER_ZIP_CODE = 'zip_code'
 KEY_CUSTOMER_CITY = 'city'
 KEY_CUSTOMER_COUNTRY = 'country'
+CUSTOMER_HEADERS = (
+    'Lastname',
+    'Street',
+    'House number',
+    'House number Addition',
+    'Zip code',
+    'City',
+    'Country'
+)
 MIN_LENGTH_ZIP_CODE = 6
 MAX_LENGTH_ZIP_CODE = 7
 

@@ -4,10 +4,19 @@ from pathlib import Path
 from tkinter import Tk, PhotoImage
 from tkinter.constants import BOTH
 from tkinter.ttk import Notebook, Frame, Label, Button
+from typing import Type
 
+from ..models import \
+    Bicycle,\
+    Accessory,\
+    Customer,\
+    Employee,\
+    BICYCLE_HEADERS,\
+    ACCESSORY_HEADERS,\
+    CUSTOMER_HEADERS,\
+    EMPLOYEE_HEADERS
 from .overviewFrame import OverviewFrame
-from ..models import Bicycle, Accessory, Employee, Customer
-from ..utils import read_data
+from ..utils import DatabaseConnection
 
 WINDOW_TITLE = 'Biker Management'
 WINDOW_DEFAULT_WIDTH = 1152
@@ -21,7 +30,6 @@ TAB_EMPLOYEE_TEXT = 'Employees'
 HEADER_EMPLOYEE_TEXT = 'Employees Overview'
 TAB_CUSTOMER_TEXT = 'Customers'
 HEADER_CUSTOMER_TEXT = 'Customers Overview'
-INIT_DATA_BTN_TEXT = 'Initialize Data'
 
 # Get the current file location of this file
 FILE_LOCATION = Path(__file__)
@@ -45,53 +53,97 @@ class BikerManagementApp:
         self._create_main_menu_frame()
 
         # Create frames for the individual entities
-        self._bicycles_frame = OverviewFrame(self.notebook, header_text=HEADER_BICYCLE_TEXT)
-        self.notebook.add(self._bicycles_frame.frame, text=TAB_BICYCLE_TEXT)
+        print('Creating tabs and frame for managed entities')
+        self._add_overview_frame(
+            OverviewFrame(
+                self.notebook,
+                header_text=HEADER_ACCESSORY_TEXT,
+                table_headers=ACCESSORY_HEADERS,
+                object_type=Accessory
+            ),
+            TAB_ACCESSORY_TEXT,
+            Accessory
+        )
+        self._add_overview_frame(
+            OverviewFrame(
+                self.notebook,
+                header_text=HEADER_BICYCLE_TEXT,
+                table_headers=BICYCLE_HEADERS,
+                object_type=Bicycle
+            ),
+            TAB_BICYCLE_TEXT,
+            Bicycle
+        )
+        self._add_overview_frame(
+            OverviewFrame(
+                self.notebook,
+                header_text=HEADER_CUSTOMER_TEXT,
+                table_headers=CUSTOMER_HEADERS,
+                object_type=Customer
+            ),
+            TAB_CUSTOMER_TEXT,
+            Customer
+        )
+        self._add_overview_frame(
+            OverviewFrame(
+                self.notebook,
+                header_text=HEADER_EMPLOYEE_TEXT,
+                table_headers=EMPLOYEE_HEADERS,
+                object_type=Employee
+            ),
+            TAB_EMPLOYEE_TEXT,
+            Employee
+        )
+        print()
 
-        self._accessories_frame = OverviewFrame(self.notebook, header_text=HEADER_ACCESSORY_TEXT)
-        self.notebook.add(self._accessories_frame.frame, text=TAB_ACCESSORY_TEXT)
-
-        self._employees_frame = OverviewFrame(self.notebook, header_text=HEADER_EMPLOYEE_TEXT)
-        self.notebook.add(self._employees_frame.frame, text=TAB_EMPLOYEE_TEXT)
-
-        self._customers_frame = OverviewFrame(self.notebook, header_text=HEADER_CUSTOMER_TEXT)
-        self.notebook.add(self._customers_frame.frame, text=TAB_CUSTOMER_TEXT)
-
-    def _create_main_menu_frame(self):
+    def _create_main_menu_frame(self) -> None:
         """
         Create the Main menu frame with a logo and an area to show some text.
         """
+        print('Creating main menu frame')
         self._main_menu_frame = Frame(self._notebook)
 
         # Add the logo to the main menu frame
         banner = self._create_banner(self._main_menu_frame)
         banner.pack()
 
-        # Add a button to initialize the data
-        initialize_data_button = Button(self._main_menu_frame, text=INIT_DATA_BTN_TEXT, command=self.initialize_data)
-        initialize_data_button.pack()
-
         self._main_menu_frame.pack(fill=BOTH, expand=True)
         self._notebook.add(self._main_menu_frame, text=TAB_MAIN_MENU_TEXT)
 
-    def initialize_data(self):
-        accessories = read_data(join('assets', 'data', 'accessories.csv'), Accessory)
-        self._accessories_frame.insert_data(accessories)
+    def _add_overview_frame(self, frame: OverviewFrame, tab_text: str, object_type: Type) -> None:
+        self.notebook.add(frame.frame, text=tab_text)
 
-        bicycles = read_data(join('assets', 'data', 'bicycles.csv'), Bicycle)
-        self._bicycles_frame.insert_data(bicycles)
+        # Add a button to initialize the data of a specific object type
+        load_object_data_button = Button(
+            self._main_menu_frame,
+            text=f'Initialize {tab_text} data',
+            command=lambda: self._initialize_data(
+                frame,
+                object_type.__name__.lower(),
+                object_type,
+                load_object_data_button,
+            )
+        )
+        load_object_data_button.pack()
 
-        customers = read_data(join('assets', 'data', 'customers.csv'), Customer)
-        self._customers_frame.insert_data(customers)
+    def _initialize_data(self, frame: OverviewFrame, table_name: str, object_type: Type, button: Button) -> None:
+        """
+        Gets the data of a specific type from the database and puts them in the Treeview widget of the Overviewframe.
+        Also navigates to the tab when the task is done, and disable the button to prevent one entry to be shown
+        multiple times in the table.
+        """
+        frame.insert_data(self._database_connection.get_data(table_name, object_type))
+        print(f'Navigating to {object_type.__name__} Overview Frame\n')
+        self._notebook.select(frame.frame)
 
-        employees = read_data(join('assets', 'data', 'employees.csv'), Employee)
-        self._employees_frame.insert_data(employees)
+        button.config(state='disabled')
 
     def _create_banner(self, parent: Frame) -> Label:
         """
         Creates a logo.
         :param parent: Where the logo will be added to.
         """
+        print('Create the logo')
         # Use the image located at ../assets/images/biker-banner.png
         banner = PhotoImage(file=join(getcwd(), 'assets', 'images', 'biker-banner.png'))
 
